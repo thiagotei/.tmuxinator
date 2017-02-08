@@ -1,0 +1,62 @@
+# ~/.tmuxinator/rose-dev.yml
+
+name: rose-dev
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+pre_window: export PATH=/g/g92/thiago/ICE/ice:$PATH
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+startup_window: ice-dev
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t rose-dev
+
+windows:
+  - rose-dev:
+      root: /g/g92/thiago/ICE/rose-dev/
+      layout: main-vertical
+      panes:
+        - 
+        -
+  - rose-src: 
+      root: /usr/workspace/wsa/bluenet/thiago/tools/build
+      layout: even-horizontal 
+      panes:
+        - 
+        -
+  - r-comp:
+      root: /usr/workspace/wsa/bluenet/thiago/tools/build
+      layout: even-horizontal
+      panes:
+        - 
+        -
+  - ice-dev:
+      root: ~/ICE/ice/icelib
+      layout: c5a7,238x57,0,0{120x57,0,0,12,117x57,121,0[117x27,121,0,13,117x29,121,28,14]}
+      panes:
+        - code:
+            - spack use jdk; 
+            -  . ~/ICE/rose-dev/set_env_java.sh
+        - debug:
+            - spack use jdk; 
+            -  . ~/ICE/rose-dev/set_env_java.sh
+        - run:
+            - spack use jdk; 
+            -  . ~/ICE/rose-dev/set_env_java.sh
