@@ -11,7 +11,7 @@ root: ~/
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
 # pre_window: rbenv shell 2.0.0-p247
-pre_window: export PATH=/g/g92/thiago/ICE/ice:$PATH
+pre_window: export PATH=/g/g92/thiago/ICE/ice:$PATH;. ~/ICE/rose-dev/set_env_java.sh
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
@@ -31,32 +31,29 @@ startup_window: ice-dev
 windows:
   - rose-dev:
       root: /g/g92/thiago/ICE/rose-dev/
-      layout: main-vertical
-      panes:
-        - 
-        -
-  - rose-src: 
-      root: /usr/workspace/wsa/bluenet/thiago/tools/build
       layout: even-horizontal 
       panes:
         - 
         -
+  - rose-src: 
+      root: /usr/workspace/wsa/bluenet/thiago/tools/build/rose/src-git-final/src/frontend/SageIII/sageInterface 
+      layout: even-horizontal 
+      panes:
+        - vim sageInterface.C 
+        - vim sageBuilder.C
   - r-comp:
-      root: /usr/workspace/wsa/bluenet/thiago/tools/build
+      root: ~/ICE/rose-dev 
       layout: even-horizontal
       panes:
-        - 
-        -
+        - cd tests 
+        - cd build
   - ice-dev:
       root: ~/ICE/ice/icelib
       layout: c5a7,238x57,0,0{120x57,0,0,12,117x57,121,0[117x27,121,0,13,117x29,121,28,14]}
       panes:
-        - code:
-            - spack use jdk; 
-            -  . ~/ICE/rose-dev/set_env_java.sh
-        - debug:
-            - spack use jdk; 
-            -  . ~/ICE/rose-dev/set_env_java.sh
-        - run:
-            - spack use jdk; 
-            -  . ~/ICE/rose-dev/set_env_java.sh
+       - code:
+           -  echo UOW        
+       - debug:
+           -  echo Good Luck
+       - run:
+           - echo Boooom
